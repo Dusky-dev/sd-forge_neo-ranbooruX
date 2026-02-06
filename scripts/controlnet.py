@@ -34,19 +34,17 @@ class RanbooruXControlNetBridge(scripts.Script):
         return False
 
     def ui(self, is_img2img):
-        # No UI components
         return ()
 
     def process(self, p, *args, **kwargs):
-        # Forge ControlNet handles everything
         return
 
     def postprocess(self, p, processed, *args):
         return
 
 
-# Ensure Forge ControlNet API is initialized
-def on_app_started():
+# Forge-Neo passes (demo, app) — must accept them
+def on_app_started(demo=None, app=None):
     controlnet_api()
 
 
