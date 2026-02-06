@@ -71,24 +71,6 @@ class ControlNetForForgeOfficial(scripts.Script):
         gen_type = "img2img" if is_img2img else "txt2img"
         elem_id_tabname = gen_type + "_controlnet"
         default_unit = ControlNetUnit(enabled=False, module="None", model="None")
-        with gr.Group(elem_id=elem_id_tabname):
-            with gr.Accordion(f"ControlNet Integrated", open=False, elem_id="controlnet",
-                              elem_classes=["controlnet"]):
-                photopea = (
-                    Photopea()
-                    if not shared.opts.data.get("controlnet_disable_photopea_edit", False)
-                    else None
-                )
-                with gr.Row(elem_id=elem_id_tabname + "_accordions", elem_classes="accordions"):
-                    for i in range(max_models):
-                        with InputAccordion(
-                            value=False,
-                            label=f"ControlNet Unit {i}",
-                            elem_classes=["cnet-unit-enabled-accordion"],  # Class on accordion
-                        ):
-                            group = ControlNetUiGroup(is_img2img, default_unit, photopea)
-                            ui_groups.append(group)
-                            controls.append(group.render(f"ControlNet-{i}", elem_id_tabname))
 
         for i, ui_group in enumerate(ui_groups):
             infotext.register_unit(i, ui_group)
@@ -648,10 +630,6 @@ def on_ui_settings():
         section=section))
     shared.opts.add_option("controlnet_disable_openpose_edit", shared.OptionInfo(
         False, "Disable openpose edit", gr.Checkbox, {"interactive": True}, section=section))
-    shared.opts.add_option("controlnet_disable_photopea_edit", shared.OptionInfo(
-        False, "Disable photopea edit", gr.Checkbox, {"interactive": True}, section=section))
-    shared.opts.add_option("controlnet_photopea_warning", shared.OptionInfo(
-        True, "Photopea popup warning", gr.Checkbox, {"interactive": True}, section=section))
     shared.opts.add_option("controlnet_input_thumbnail", shared.OptionInfo(
         True, "Input image thumbnail on unit header", gr.Checkbox, {"interactive": True}, section=section))
 
