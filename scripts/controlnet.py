@@ -15,7 +15,6 @@ from lib_controlnet.external_code import ControlNetUnit
 from lib_controlnet.utils import align_dim_latent, set_numpy_seed, crop_and_resize_image, \
     prepare_mask, judge_image_type
 from lib_controlnet.controlnet_ui.controlnet_ui_group import ControlNetUiGroup
-from lib_controlnet.controlnet_ui.photopea import Photopea
 from lib_controlnet.logging import logger
 from modules.processing import StableDiffusionProcessingImg2Img, StableDiffusionProcessingTxt2Img, \
     StableDiffusionProcessing
