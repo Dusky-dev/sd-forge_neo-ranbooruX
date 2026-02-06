@@ -45,7 +45,9 @@ class RanbooruXControlNetBridge(scripts.Script):
 
 # Forge-Neo passes (demo, app) — must accept them
 def on_app_started(demo=None, app=None):
-    controlnet_api()
+    # Pass demo and app to controlnet_api
+    controlnet_api(demo, app)
 
 
 script_callbacks.on_app_started(on_app_started)
+
