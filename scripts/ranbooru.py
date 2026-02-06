@@ -23,7 +23,6 @@ from urllib.parse import quote_plus
 
 from modules.processing import process_images, StableDiffusionProcessingImg2Img, StableDiffusionProcessing
 from modules import shared
-from modules.sd_hijack import model_hijack
 from modules import deepbooru
 from modules.ui_components import InputAccordion
 from modules.scripts import basedir
