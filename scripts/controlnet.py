@@ -5,18 +5,17 @@ Forge-Neo already provides ControlNet as a builtin extension
 (sd_forge_controlnet). This file intentionally DOES NOT:
 
 - create UI
-- register callbacks
+- register ControlNet UI callbacks
 - duplicate ControlNet logic
-- touch ControlNetUiGroup
 
 It exists only to keep RanbooruX compatible with Forge-Neo
-without crashing due to duplicate ControlNet registration.
+without causing duplicate ControlNet registration or crashes.
 """
 
 import modules.scripts as scripts
 from modules import script_callbacks
 
-# Import Forge's ControlNet API to ensure it is loaded
+# Ensure Forge ControlNet API is loaded
 from lib_controlnet.api import controlnet_api
 
 
@@ -28,19 +27,18 @@ class RanbooruXControlNetBridge(scripts.Script):
     sorting_priority = -100  # Load AFTER Forge ControlNet
 
     def title(self):
-        # Do not expose a second ControlNet UI
         return "RanbooruX ControlNet (Forge)"
 
     def show(self, is_img2img):
-        # Always hidden – Forge already provides the UI
-        return scripts.NeverVisible
+        # Forge-Neo: return False to hide script
+        return False
 
     def ui(self, is_img2img):
         # No UI components
         return ()
 
     def process(self, p, *args, **kwargs):
-        # No processing – Forge ControlNet handles everything
+        # Forge ControlNet handles everything
         return
 
     def postprocess(self, p, processed, *args):
